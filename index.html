@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hamza Saeed — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Star canvas background -->
+  <canvas id="stars"></canvas>
+
+  <!-- Nav -->
+  <nav id="navbar">
+    <div class="nav-logo">HS</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact me</button>
+  </nav>
+
+  <!-- ── Hero ───────────────────────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Hello, I'm</p>
+      <h1 class="hero-name">Hamza<br><span>Saeed</span></h1>
+      <p class="hero-role">Software Engineer</p>
+      <p class="hero-sub">5+ years building web & mobile products across fintech, real estate, social, and more.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#projects">View My Work</a>
+        <a class="btn-ghost" href="Hamza CV.pdf" target="_blank">Download CV</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">5+</span><span class="stat-label">Years Exp.</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">6</span><span class="stat-label">Projects</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">10<sup>th</sup></span><span class="stat-label">IEEE PK</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="avatar-ring">
+        <div class="avatar-inner">
+          <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="60" cy="42" r="24" fill="#c0a8ff" opacity="0.18"/>
+            <circle cx="60" cy="42" r="16" fill="#c0a8ff" opacity="0.35"/>
+            <ellipse cx="60" cy="95" rx="32" ry="18" fill="#c0a8ff" opacity="0.18"/>
+            <ellipse cx="60" cy="92" rx="22" ry="13" fill="#c0a8ff" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="orbit-ring" data-orbit="0"></div>
+        <div class="orbit-ring" data-orbit="1"></div>
+        <div class="orbit-ring" data-orbit="2"></div>
+        <div class="e-dot" style="--color:#c0a8ff"></div>
+        <div class="e-dot" style="--color:#7eb8ff"></div>
+        <div class="e-dot" style="--color:#a8e6cf"></div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ── About ──────────────────────────────────────────────────────────── -->
+  <section id="about" class="reveal">
+    <div class="section-inner">
+      <div class="section-label">About Me</div>
+      <h2 class="section-title">Who I Am</h2>
+      <p class="section-desc">Software Engineer with 5+ years of experience building web &amp; mobile products across fintech, real estate, social, and more.</p>
+      <div class="about-grid">
+        <div class="about-card">
+          <div class="about-icon">📍</div>
+          <div class="about-card-label">Location</div>
+          <div class="about-card-val">Wah Cantt, Pakistan</div>
+        </div>
+        <div class="about-card">
+          <div class="about-icon">🎓</div>
+          <div class="about-card-label">Education</div>
+          <div class="about-card-val">B.S. Software Engineering<br><small>COMSATS University Islamabad (2017–2021)</small></div>
+        </div>
+        <div class="about-card">
+          <div class="about-icon">🏆</div>
+          <div class="about-card-label">Achievement</div>
+          <div class="about-card-val">IEEE Xtreme 13.0<br><small>10th in Pakistan</small></div>
+        </div>
+        <div class="about-card">
+          <div class="about-icon">🎯</div>
+          <div class="about-card-label">Hobbies</div>
+          <div class="about-card-val">Problem Solving · Movies<br>TV Series · Anime</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Skills ─────────────────────────────────────────────────────────── -->
+  <section id="skills" class="reveal">
+    <div class="section-inner">
+      <div class="section-label">What I Know</div>
+      <h2 class="section-title">Skills</h2>
+      <p class="section-desc">A broad toolkit spanning no-code platforms, fullstack web, mobile, design, and media production.</p>
+      <div class="skills-block">
+        <div class="skills-group">
+          <div class="skills-group-title">No-Code / Low-Code</div>
+          <div class="pills">
+            <span class="pill">Bubble.io</span>
+          </div>
+        </div>
+        <div class="skills-group">
+          <div class="skills-group-title">Languages</div>
+          <div class="pills">
+            <span class="pill">JavaScript</span>
+            <span class="pill">Python</span>
+            <span class="pill">PHP</span>
+            <span class="pill">Java</span>
+            <span class="pill">SQL</span>
+            <span class="pill">C++</span>
+          </div>
+        </div>
+        <div class="skills-group">
+          <div class="skills-group-title">Frameworks &amp; Tools</div>
+          <div class="pills">
+            <span class="pill">Laravel</span>
+            <span class="pill">React</span>
+            <span class="pill">Scikit-learn</span>
+            <span class="pill">PostgreSQL</span>
+          </div>
+        </div>
+        <div class="skills-group">
+          <div class="skills-group-title">Design &amp; Media</div>
+          <div class="pills">
+            <span class="pill">Figma</span>
+            <span class="pill">Adobe XD</span>
+            <span class="pill">Photoshop</span>
+            <span class="pill">Illustrator</span>
+            <span class="pill">Premiere Pro</span>
+            <span class="pill">After Effects</span>
+          </div>
+        </div>
+        <div class="skills-group">
+          <div class="skills-group-title">Other</div>
+          <div class="pills">
+            <span class="pill">UML / StarUML</span>
+            <span class="pill">draw.io</span>
+            <span class="pill">Agile / Scrum</span>
+            <span class="pill">Ubuntu</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Projects ───────────────────────────────────────────────────────── -->
+  <section id="projects" class="reveal">
+    <div class="section-inner">
+      <div class="section-label">My Work</div>
+      <h2 class="section-title">Projects</h2>
+      <p class="section-desc">A selection of products I've built and shipped across different industries.</p>
+      <div class="projects-grid">
+
+        <div class="proj-card" style="--accent:#79cdd0">
+          <div class="proj-card-header">
+            <div class="proj-icon" style="background:rgba(121,205,208,0.15)">💍</div>
+            <span class="proj-tag" style="background:rgba(121,205,208,0.2);color:#79cdd0">Current Project</span>
+          </div>
+          <h3 class="proj-name">WedBox</h3>
+          <div class="proj-chips">
+            <span>Jan 2026 – Present</span>
+            <span>Wedding Tech</span>
+            <span>Web Platform</span>
+          </div>
+          <p class="proj-desc">A one-stop wedding planning platform that connects couples with vendors, venues, and everything they need to plan their perfect day.</p>
+          <a class="proj-link" href="https://www.wedbox.io/" target="_blank" rel="noopener">Visit WedBox →</a>
+        </div>
+
+        <div class="proj-card" style="--accent:#f0c040">
+          <div class="proj-card-header">
+            <div class="proj-icon" style="background:rgba(240,192,64,0.15)">📈</div>
+            <span class="proj-tag" style="background:rgba(240,192,64,0.2);color:#f0c040">FinTech</span>
+          </div>
+          <h3 class="proj-name">Chipotle Money</h3>
+          <div class="proj-chips">
+            <span>Feb 2025 – Jan 2026</span>
+            <span>App Store + Play Store</span>
+          </div>
+          <p class="proj-desc">An options-selling platform with built-in market analysis tools. Available on both the App Store and Google Play Store.</p>
+          <a class="proj-link" href="https://chipotlemoney.com/" target="_blank" rel="noopener">Visit Chipotle Money →</a>
+        </div>
+
+        <div class="proj-card" style="--accent:#9b59b6">
+          <div class="proj-card-header">
+            <div class="proj-icon" style="background:rgba(155,89,182,0.15)">🏠</div>
+            <span class="proj-tag" style="background:rgba(155,89,182,0.2);color:#9b59b6">Real Estate</span>
+          </div>
+          <h3 class="proj-name">Purpleroof</h3>
+          <div class="proj-chips">
+            <span>2024 – 2025</span>
+            <span>Global Marketplace</span>
+          </div>
+          <p class="proj-desc">A global real estate marketplace connecting buyers, sellers, and agents across international property markets.</p>
+          <a class="proj-link" href="https://purpleroof.com/" target="_blank" rel="noopener">Visit Purpleroof →</a>
+        </div>
+
+        <div class="proj-card" style="--accent:#1abc9c">
+          <div class="proj-card-header">
+            <div class="proj-icon" style="background:rgba(26,188,156,0.15)">🌍</div>
+            <span class="proj-tag" style="background:rgba(26,188,156,0.2);color:#1abc9c">Social</span>
+          </div>
+          <h3 class="proj-name">Pangia</h3>
+          <div class="proj-chips">
+            <span>2024</span>
+            <span>iOS + Android</span>
+          </div>
+          <p class="proj-desc">A community-based mobile app connecting people around shared interests and local experiences.</p>
+        </div>
+
+        <div class="proj-card" style="--accent:#e67e22">
+          <div class="proj-card-header">
+            <div class="proj-icon" style="background:rgba(230,126,34,0.15)">💸</div>
+            <span class="proj-tag" style="background:rgba(230,126,34,0.2);color:#e67e22">Investment</span>
+          </div>
+          <h3 class="proj-name">KarmaClub</h3>
+          <div class="proj-chips">
+            <span>Apr – Jul 2022</span>
+            <span>Angel Network</span>
+          </div>
+          <p class="proj-desc">A private angel investor network platform facilitating connections between startups seeking funding and accredited investors.</p>
+          <a class="proj-link" href="https://karmaclub.id/" target="_blank" rel="noopener">Visit KarmaClub →</a>
+        </div>
+
+        <div class="proj-card" style="--accent:#3498db">
+          <div class="proj-card-header">
+            <div class="proj-icon" style="background:rgba(52,152,219,0.15)">🚀</div>
+            <span class="proj-tag" style="background:rgba(52,152,219,0.2);color:#3498db">Startups</span>
+          </div>
+          <h3 class="proj-name">Demium</h3>
+          <div class="proj-chips">
+            <span>Dec 2021</span>
+            <span>Funding Platform</span>
+          </div>
+          <p class="proj-desc">A startup creation and funding platform that identifies, develops, and invests in early-stage tech startups across Europe.</p>
+          <a class="proj-link" href="https://demium.com/" target="_blank" rel="noopener">Visit Demium →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact ────────────────────────────────────────────────────────── -->
+  <section id="contact" class="reveal">
+    <div class="section-inner contact-inner">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Contact</h2>
+      <p class="section-desc">Always open to new opportunities, collaborations, and interesting conversations.</p>
+      <div class="contact-grid">
+        <a class="contact-card" href="mailto:Khamzasaeed7@gmail.com">
+          <div class="contact-card-icon">✉️</div>
+          <div class="contact-card-label">Email</div>
+          <div class="contact-card-val">Khamzasaeed7@gmail.com</div>
+        </a>
+<a class="contact-card" href="https://www.linkedin.com/in/hamza7saeed" target="_blank" rel="noopener">
+          <div class="contact-card-icon">💼</div>
+          <div class="contact-card-label">LinkedIn</div>
+          <div class="contact-card-val">linkedin.com/in/hamza7saeed</div>
+        </a>
+        <a class="contact-card" href="https://twitter.com/hamza7_saeed" target="_blank" rel="noopener">
+          <div class="contact-card-icon">🐦</div>
+          <div class="contact-card-label">Twitter</div>
+          <div class="contact-card-val">@hamza7_saeed</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Hamza Saeed · Built with care</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
