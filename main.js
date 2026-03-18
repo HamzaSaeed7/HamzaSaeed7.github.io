@@ -179,8 +179,8 @@ document.querySelectorAll('.pill').forEach(pill => {
       // Update speed multiplier — pick a new random target at random intervals
       const sp = speedState[i];
       if (now >= sp.nextChange) {
-        sp.target     = 0.3 + Math.random() * 3.5; // 0.3× slow … 3.8× fast
-        sp.nextChange = now + 800 + Math.random() * 3000;
+        sp.target     = 0.5 + Math.random() * 2.5; // 0.5× slow … 3.0× fast
+        sp.nextChange = now + 3000 + Math.random() * 4000;
       }
       // Smoothly lerp current speed toward target
       sp.current += (sp.target - sp.current) * 0.03;
