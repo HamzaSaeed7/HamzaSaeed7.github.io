@@ -119,6 +119,13 @@ document.querySelectorAll('.pill').forEach(pill => {
   ];
   const TAIL_LENGTH = 28;
 
+  // Per-orbit speed state for random bursts
+  const speedState = ORBITS.map(() => ({
+    current: 1,        // current speed multiplier
+    target:  1,        // target speed multiplier
+    nextChange: 0,     // timestamp when to pick a new target
+  }));
+
   const backRings  = avatarRing.querySelectorAll('.orbit-ring--back');
   const frontRings = avatarRing.querySelectorAll('.orbit-ring--front');
   const dots       = avatarRing.querySelectorAll('.e-dot');
@@ -150,12 +157,16 @@ document.querySelectorAll('.pill').forEach(pill => {
     });
   }
 
-  const t0 = performance.now();
+  let lastNow = null;
+  // Each orbit tracks its own accumulated angle
+  ORBITS.forEach(orb => { orb.angle = orb.phase; });
 
   function animate(now) {
     resizeTrail();
     const size  = avatarRing.offsetWidth;
     if (!size) { requestAnimationFrame(animate); return; }
+    const dt    = lastNow ? Math.min(now - lastNow, 64) : 16; // ms, capped
+    lastNow     = now;
     const scale = size / 280;
     const cx    = size / 2;
     const cy    = size / 2;
@@ -164,7 +175,19 @@ document.querySelectorAll('.pill').forEach(pill => {
       const a  = orb.a * scale;
       const b  = orb.b * scale;
       const rz = orb.rz;
-      const t  = ((now - t0) / orb.dur) * Math.PI * 2 + orb.phase;
+
+      // Update speed multiplier — pick a new random target at random intervals
+      const sp = speedState[i];
+      if (now >= sp.nextChange) {
+        sp.target     = 0.3 + Math.random() * 3.5; // 0.3× slow … 3.8× fast
+        sp.nextChange = now + 800 + Math.random() * 3000;
+      }
+      // Smoothly lerp current speed toward target
+      sp.current += (sp.target - sp.current) * 0.03;
+
+      // Advance angle by base speed × multiplier
+      orb.angle += (Math.PI * 2 / orb.dur) * dt * sp.current;
+      const t = orb.angle;
 
       // Parametric point on the ellipse (unrotated)
       const ex = a * Math.cos(t);
