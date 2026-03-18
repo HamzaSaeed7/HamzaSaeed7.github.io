@@ -127,11 +127,11 @@ document.querySelectorAll('.pill').forEach(pill => {
   const histories  = ORBITS.map(() => []);
 
   function resizeTrail() {
-    trail.width  = avatarRing.offsetWidth;
-    trail.height = avatarRing.offsetHeight;
+    const w = avatarRing.offsetWidth;
+    const h = avatarRing.offsetHeight;
+    if (w > 0) { trail.width = w; trail.height = h; }
   }
   window.addEventListener('resize', resizeTrail);
-  resizeTrail();
 
   // Lay out the visual ellipse rings (called once + on resize)
   function setupRings() {
@@ -153,7 +153,9 @@ document.querySelectorAll('.pill').forEach(pill => {
   const t0 = performance.now();
 
   function animate(now) {
+    resizeTrail();
     const size  = avatarRing.offsetWidth;
+    if (!size) { requestAnimationFrame(animate); return; }
     const scale = size / 280;
     const cx    = size / 2;
     const cy    = size / 2;
