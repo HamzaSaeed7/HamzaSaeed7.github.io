@@ -113,13 +113,25 @@ document.querySelectorAll('.pill').forEach(pill => {
   // Each orbit: a = semi-major axis, b = semi-minor axis (flatter = more tilted),
   // rz = rotation of the ellipse in radians, dur = period in ms, phase = start offset
   const ORBITS = [
-    { a: 115, b: 26,  rz: 15  * Math.PI / 180, dur: 2200, phase: 0 },
-    { a:  88, b: 52,  rz: 82  * Math.PI / 180, dur: 3700, phase: 1.1 },
-    { a: 128, b: 68,  rz: 145 * Math.PI / 180, dur: 5200, phase: 2.4 },
+    { a: 115, b: 26,  rz: 15  * Math.PI / 180, dur: 2200, phase: 0,   color: [192, 168, 255] },
+    { a:  88, b: 52,  rz: 82  * Math.PI / 180, dur: 3700, phase: 1.1, color: [126, 184, 255] },
+    { a: 128, b: 68,  rz: 145 * Math.PI / 180, dur: 5200, phase: 2.4, color: [168, 230, 207] },
   ];
+  const TAIL_LENGTH = 28;
 
-  const rings = avatarRing.querySelectorAll('.orbit-ring');
-  const dots  = avatarRing.querySelectorAll('.e-dot');
+  const backRings  = avatarRing.querySelectorAll('.orbit-ring--back');
+  const frontRings = avatarRing.querySelectorAll('.orbit-ring--front');
+  const dots       = avatarRing.querySelectorAll('.e-dot');
+  const trail      = avatarRing.querySelector('.orbit-trail');
+  const ctx        = trail.getContext('2d');
+  const histories  = ORBITS.map(() => []);
+
+  function resizeTrail() {
+    trail.width  = avatarRing.offsetWidth;
+    trail.height = avatarRing.offsetHeight;
+  }
+  window.addEventListener('resize', resizeTrail);
+  resizeTrail();
 
   // Lay out the visual ellipse rings (called once + on resize)
   function setupRings() {
@@ -129,9 +141,12 @@ document.querySelectorAll('.pill').forEach(pill => {
       const a  = orb.a * scale;
       const b  = orb.b * scale;
       const rz = orb.rz * 180 / Math.PI;
-      rings[i].style.width     = `${a * 2}px`;
-      rings[i].style.height    = `${b * 2}px`;
-      rings[i].style.transform = `translate(-50%, -50%) rotate(${rz}deg)`;
+      const w  = `${a * 2}px`;
+      const h  = `${b * 2}px`;
+      const tr = `translate(-50%, -50%) rotate(${rz}deg)`;
+      backRings[i].style.width     = frontRings[i].style.width     = w;
+      backRings[i].style.height    = frontRings[i].style.height    = h;
+      backRings[i].style.transform = frontRings[i].style.transform = tr;
     });
   }
 
@@ -162,6 +177,27 @@ document.querySelectorAll('.pill').forEach(pill => {
 
       // sin(t) > 0 → dot is on the near half of the orbit → in front of nucleus
       dots[i].style.zIndex = Math.sin(t) > 0 ? 2 : 0;
+
+      // Record position for tail (store depth so we can hide back-half trail)
+      histories[i].push({ x: cx + sx, y: cy + sy, front: Math.sin(t) > 0 });
+      if (histories[i].length > TAIL_LENGTH) histories[i].shift();
+    });
+
+    // Draw tails on canvas
+    ctx.clearRect(0, 0, trail.width, trail.height);
+    ORBITS.forEach((orb, i) => {
+      const hist = histories[i];
+      const [r, g, b] = orb.color;
+      hist.forEach((pos, j) => {
+        if (!pos.front) return;
+        const p      = j / TAIL_LENGTH;          // 0 = oldest → 1 = newest
+        const alpha  = p * p * 0.7;
+        const radius = p * 4;
+        ctx.beginPath();
+        ctx.arc(pos.x, pos.y, radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
+        ctx.fill();
+      });
     });
 
     requestAnimationFrame(animate);
