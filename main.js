@@ -36,19 +36,63 @@
   draw();
 })();
 
-// ── Navbar scroll tint ────────────────────────────────────────────────────────
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 40);
-}, { passive: true });
+// ── Navbar tint, scroll progress & active section ────────────────────────────
+(function () {
+  const navbar   = document.getElementById('navbar');
+  const progress = document.getElementById('scroll-progress');
+  const links    = [...document.querySelectorAll('.nav-links a')];
+  const sections = links
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
 
-// ── Smooth nav link scroll ────────────────────────────────────────────────────
-document.querySelectorAll('.nav-links a').forEach(a => {
+  let ticking = false;
+  function update() {
+    ticking = false;
+    const y = window.scrollY;
+
+    navbar.classList.toggle('scrolled', y > 40);
+
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = `${max > 0 ? (y / max) * 100 : 0}%`;
+
+    // Highlight whichever section owns the upper third of the viewport
+    const line = y + window.innerHeight * 0.33;
+    let current = -1;
+    sections.forEach((sec, i) => { if (sec.offsetTop <= line) current = i; });
+    links.forEach((a, i) => a.classList.toggle('active', i === current));
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+
+// ── Mobile menu ───────────────────────────────────────────────────────────────
+(function () {
+  const toggle = document.querySelector('.nav-toggle');
+  const menu   = document.getElementById('mobile-menu');
+  if (!toggle || !menu) return;
+
+  function setOpen(open) {
+    menu.hidden = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+  }
+
+  toggle.addEventListener('click', () => setOpen(menu.hidden));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+  window.addEventListener('resize', () => { if (window.innerWidth > 900) setOpen(false); });
+})();
+
+// ── Smooth in-page scroll ─────────────────────────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
-    const href = a.getAttribute('href');
-    if (href.startsWith('#')) {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
       e.preventDefault();
-      document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+      target.scrollIntoView({ behavior: 'smooth' });
     }
   });
 });

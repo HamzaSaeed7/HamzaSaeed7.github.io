@@ -13,17 +13,31 @@
   <!-- Star canvas background -->
   <canvas id="stars"></canvas>
 
+  <!-- Scroll progress -->
+  <div id="scroll-progress"></div>
+
   <!-- Nav -->
   <nav id="navbar">
-    <div class="nav-logo">HS</div>
+    <a class="nav-logo" href="#hero">HS</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact me</button>
+    <a class="nav-cta" href="#contact">Contact me</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" hidden>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
 
   <!-- ── Hero ───────────────────────────────────────────────────────────── -->
   <section id="hero">
@@ -39,7 +53,7 @@
       <div class="hero-stats">
         <div class="stat"><span class="stat-num">5+</span><span class="stat-label">Years Exp.</span></div>
         <div class="stat-divider"></div>
-        <div class="stat"><span class="stat-num">6</span><span class="stat-label">Projects</span></div>
+        <div class="stat"><span class="stat-num">8</span><span class="stat-label">Projects</span></div>
         <div class="stat-divider"></div>
         <div class="stat"><span class="stat-num">10<sup>th</sup></span><span class="stat-label">IEEE PK</span></div>
       </div>
@@ -167,23 +181,52 @@
 
         <div class="proj-card" style="--accent:#79cdd0">
           <div class="proj-card-header">
-            <div class="proj-icon" style="background:rgba(121,205,208,0.15)">💍</div>
-            <span class="proj-tag" style="background:rgba(121,205,208,0.2);color:#79cdd0">Current Project</span>
+            <div class="proj-icon">💍</div>
+            <span class="proj-tag">Current Project</span>
           </div>
-          <h3 class="proj-name">WedBox</h3>
+          <h3 class="proj-name">Wedbi</h3>
           <div class="proj-chips">
             <span>Jan 2026 – Present</span>
             <span>Wedding Tech</span>
-            <span>Web Platform</span>
+            <span>Cyprus</span>
           </div>
-          <p class="proj-desc">A one-stop wedding planning platform that connects couples with vendors, venues, and everything they need to plan their perfect day.</p>
-          <a class="proj-link" href="https://www.wedbox.io/" target="_blank" rel="noopener">Visit WedBox →</a>
+          <p class="proj-desc">Plan an entire wedding in one click. Wedbi is Cyprus's all-in-one wedding marketplace — couples filter venues, photographers, florists and 20+ other services by city and style, assemble a bespoke package, and see the <em>total cost upfront</em>. No deposits, no endless phone calls, no surprises.</p>
+          <a class="proj-link" href="https://wedbi.io/" target="_blank" rel="noopener">Visit Wedbi <span class="arrow">→</span></a>
+        </div>
+
+        <div class="proj-card" style="--accent:#ff6b8a">
+          <div class="proj-card-header">
+            <div class="proj-icon">🏡</div>
+            <span class="proj-tag">PropTech</span>
+          </div>
+          <h3 class="proj-name">TheMarket</h3>
+          <div class="proj-chips">
+            <span>Owner to Buyer</span>
+            <span>Australia + USA</span>
+            <span>Marketplace</span>
+          </div>
+          <p class="proj-desc">Your home. Your listing. <em>No agent in between.</em> A peer-to-peer property marketplace where 42,800+ verified owners and buyers across Sydney, Melbourne, Austin and San Francisco list for free, message each other directly — and keep the commission.</p>
+          <a class="proj-link" href="https://themarket101.bubbleapps.io/version-test/auth?nav=signin" target="_blank" rel="noopener">Visit TheMarket <span class="arrow">→</span></a>
+        </div>
+
+        <div class="proj-card" style="--accent:#b8c6db">
+          <div class="proj-card-header">
+            <div class="proj-icon">📸</div>
+            <span class="proj-tag">Photography</span>
+          </div>
+          <h3 class="proj-name">Dog Photography Awards — Portal</h3>
+          <div class="proj-chips">
+            <span>Entry &amp; Judging Portal</span>
+            <span>International</span>
+          </div>
+          <p class="proj-desc">The engine room behind an international competition featured in <strong>The Guardian</strong>, <strong>Forbes</strong> and <strong>The Telegraph</strong>. Photographers submit across six categories; a judging panel spanning seven countries scores every frame to crown the Dog Photographer of the Year.</p>
+          <a class="proj-link" href="https://portal.dogphotographyawards.com/" target="_blank" rel="noopener">Visit the Portal <span class="arrow">→</span></a>
         </div>
 
         <div class="proj-card" style="--accent:#f0c040">
           <div class="proj-card-header">
-            <div class="proj-icon" style="background:rgba(240,192,64,0.15)">📈</div>
-            <span class="proj-tag" style="background:rgba(240,192,64,0.2);color:#f0c040">FinTech</span>
+            <div class="proj-icon">📈</div>
+            <span class="proj-tag">FinTech</span>
           </div>
           <h3 class="proj-name">Chipotle Money</h3>
           <div class="proj-chips">
@@ -191,13 +234,13 @@
             <span>App Store + Play Store</span>
           </div>
           <p class="proj-desc">An options-selling platform with built-in market analysis tools. Available on both the App Store and Google Play Store.</p>
-          <a class="proj-link" href="https://chipotlemoney.com/" target="_blank" rel="noopener">Visit Chipotle Money →</a>
+          <a class="proj-link" href="https://chipotlemoney.com/" target="_blank" rel="noopener">Visit Chipotle Money <span class="arrow">→</span></a>
         </div>
 
         <div class="proj-card" style="--accent:#9b59b6">
           <div class="proj-card-header">
-            <div class="proj-icon" style="background:rgba(155,89,182,0.15)">🏠</div>
-            <span class="proj-tag" style="background:rgba(155,89,182,0.2);color:#9b59b6">Real Estate</span>
+            <div class="proj-icon">🏠</div>
+            <span class="proj-tag">Real Estate</span>
           </div>
           <h3 class="proj-name">Purpleroof</h3>
           <div class="proj-chips">
@@ -205,13 +248,13 @@
             <span>Global Marketplace</span>
           </div>
           <p class="proj-desc">A global real estate marketplace connecting buyers, sellers, and agents across international property markets.</p>
-          <a class="proj-link" href="https://purpleroof.com/" target="_blank" rel="noopener">Visit Purpleroof →</a>
+          <a class="proj-link" href="https://purpleroof.com/" target="_blank" rel="noopener">Visit Purpleroof <span class="arrow">→</span></a>
         </div>
 
         <div class="proj-card" style="--accent:#1abc9c">
           <div class="proj-card-header">
-            <div class="proj-icon" style="background:rgba(26,188,156,0.15)">🌍</div>
-            <span class="proj-tag" style="background:rgba(26,188,156,0.2);color:#1abc9c">Social</span>
+            <div class="proj-icon">🌍</div>
+            <span class="proj-tag">Social</span>
           </div>
           <h3 class="proj-name">Pangia</h3>
           <div class="proj-chips">
@@ -223,8 +266,8 @@
 
         <div class="proj-card" style="--accent:#e67e22">
           <div class="proj-card-header">
-            <div class="proj-icon" style="background:rgba(230,126,34,0.15)">💸</div>
-            <span class="proj-tag" style="background:rgba(230,126,34,0.2);color:#e67e22">Investment</span>
+            <div class="proj-icon">💸</div>
+            <span class="proj-tag">Investment</span>
           </div>
           <h3 class="proj-name">KarmaClub</h3>
           <div class="proj-chips">
@@ -232,13 +275,13 @@
             <span>Angel Network</span>
           </div>
           <p class="proj-desc">A private angel investor network platform facilitating connections between startups seeking funding and accredited investors.</p>
-          <a class="proj-link" href="https://karmaclub.id/" target="_blank" rel="noopener">Visit KarmaClub →</a>
+          <a class="proj-link" href="https://karmaclub.id/" target="_blank" rel="noopener">Visit KarmaClub <span class="arrow">→</span></a>
         </div>
 
         <div class="proj-card" style="--accent:#3498db">
           <div class="proj-card-header">
-            <div class="proj-icon" style="background:rgba(52,152,219,0.15)">🚀</div>
-            <span class="proj-tag" style="background:rgba(52,152,219,0.2);color:#3498db">Startups</span>
+            <div class="proj-icon">🚀</div>
+            <span class="proj-tag">Startups</span>
           </div>
           <h3 class="proj-name">Demium</h3>
           <div class="proj-chips">
@@ -246,7 +289,7 @@
             <span>Funding Platform</span>
           </div>
           <p class="proj-desc">A startup creation and funding platform that identifies, develops, and invests in early-stage tech startups across Europe.</p>
-          <a class="proj-link" href="https://demium.com/" target="_blank" rel="noopener">Visit Demium →</a>
+          <a class="proj-link" href="https://demium.com/" target="_blank" rel="noopener">Visit Demium <span class="arrow">→</span></a>
         </div>
 
       </div>
