@@ -4,11 +4,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hamza Saeed</title>
+  <script>
+    // Play the intro on every page load, except for reduced-motion users
+    (function () {
+      var el = document.documentElement;
+      try {
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      } catch (e) { /* matchMedia unavailable */ }
+      el.classList.add('intro');
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <!-- Intro motion sequence -->
+  <div id="intro" role="dialog" aria-modal="true" aria-label="Intro animation">
+    <canvas class="intro-canvas" role="img" aria-label="Hamza Saeed"></canvas>
+    <div class="intro-meta">
+      <p class="intro-role">Software Engineer</p>
+      <p class="intro-ticker">Shipping products in <span class="intro-ticker-word">Wedding Tech</span></p>
+      <button class="intro-enter" type="button">Enter portfolio <span class="arrow">→</span></button>
+    </div>
+    <button class="intro-skip" type="button">Skip intro</button>
+    <p class="intro-hint">Move your cursor · click for a shockwave</p>
+    <div class="intro-progress"><span></span></div>
+  </div>
 
   <!-- Star canvas background -->
   <canvas id="stars"></canvas>
@@ -324,9 +347,10 @@
 
   <!-- Footer -->
   <footer>
-    <p>© 2026 Hamza Saeed · Built with care</p>
+    <p>© 2026 Hamza Saeed · Built with care · <button class="replay-intro" type="button">Replay intro</button></p>
   </footer>
 
   <script src="main.js"></script>
+  <script src="intro.js"></script>
 </body>
 </html>
